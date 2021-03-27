@@ -1,0 +1,27 @@
+{:paths ["src"]
+
+ :deps
+ {org.clojure/clojure {:mvn/version "1.10.3"}
+  com.helger/ph-css   {:mvn/version "6.3.0"}}
+
+ :aliases
+ {:test
+  {:extra-paths ["test"]
+   :extra-deps  {healthsamurai/matcho {:mvn/version "RELEASE"}}}
+
+  :kaocha
+  {:extra-paths ["test"]
+   :extra-deps  {lambdaisland/kaocha {:mvn/version "1.0-612"}}
+   :jvm-opts ^:replace ["-XX:-OmitStackTraceInFastThrow"]
+   :main-opts ["-m"            "kaocha.runner"
+               "--config-file" "test/settings.edn"]}
+
+  :uberjar
+  {:extra-deps {uberdeps/uberdeps {:mvn/version "RELEASE"}}
+   :main-opts  ["-m"           "uberdeps.uberjar"
+                "--main-class" "clj-ph-css.core"]}
+
+  :deploy
+  {:extra-deps {slipset/deps-deploy {:mvn/version "RELEASE"}}
+   :main-opts  ["-m"     "deps-deploy.deps-deploy"
+                "deploy" "target/clj-ph-css.jar"]}}}
