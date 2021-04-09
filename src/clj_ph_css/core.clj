@@ -363,6 +363,3 @@
         :namespace-rule (.addNamespaceRule cascading* (object node))
         (.addRule cascading* (object node))))
     (.getCSSAsString writer* cascading*)))
-
-
-
